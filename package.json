@@ -1,0 +1,22 @@
+{
+  "name": "insomnia-oidc-login",
+  "version": "1.0.0",
+  "description": "Tool written in node.js to insert login request into the exported collection from the Insomnia REST client. Login request is chained for each request which references ```authoritiesToken``` as a Bearer token value.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaverric/insomnia-oidc-login.git"
+  },
+  "author": "Daniel Jilek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xaverric/insomnia-oidc-login/issues"
+  },
+  "homepage": "https://github.com/xaverric/insomnia-oidc-login#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}

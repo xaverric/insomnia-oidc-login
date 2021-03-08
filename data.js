@@ -35,8 +35,8 @@ const loginRequest = {
     "url": "{{ host  }}/uu-oidc-maing02/11111111111111111111111111111111/oidc/grantToken/"
 };
 
-const authTemplate = {
-    authoritiesToken: "{% response 'body', 'login_request_id', 'b64::JC5pZF90b2tlbg==::46b', 'always', 60 %}"
+const authTemplate = (uuid) => {
+    return `{% response 'body', '${uuid}', 'b64::JC5pZF90b2tlbg==::46b', 'always', 60 %}`
 };
 
 

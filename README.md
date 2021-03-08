@@ -2,6 +2,9 @@
 
 Tool written in node.js to insert login request into the exported collection from the Insomnia REST client. Login request is chained for each request which references ```authoritiesToken``` as a Bearer token value. 
 
+## Installation
+```npm install```
+
 ## How to run
 
 ```node index.js [path]```

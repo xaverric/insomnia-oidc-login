@@ -4,6 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 
 let { loginRequest, authTemplate } = require("./data.js");
 
+const tokenVariableNames = ["awidOwnerToken", "asidOwnerToken", "authoritiesToken", "coreSupportToken"];
+
+
 const getWorkspaces = (dirPath) => {
     let filePaths = [];
     fs.readdirSync(dirPath).forEach(fileName => {
@@ -23,7 +26,7 @@ const updateWorkspace = (filePath) => {
 
 	let data = JSON.parse(fs.readFileSync(filePath));
 	addLoginRequest(data, uuid);
-	updateAuthoritiesToken(data, uuid);
+	updateTokens(data, uuid);
 	
 	fs.writeFileSync(`${filePath}_new-auth.json`, JSON.stringify(data));
 }
@@ -45,10 +48,13 @@ const updateLoginRequestIds = (data, uuid) => {
 	return loginRequest;
 }
 
-const updateAuthoritiesToken = (data, uuid) => {
-	let object = data.resources.find(resource => resource?.data?.authoritiesToken);
-	object.data.authoritiesToken = authTemplate(uuid);
-	return object;
+const updateTokens = (data, uuid) => {
+	tokenVariableNames.forEach(tokenVariable => updateTokenVariable(data, uuid, tokenVariable));
+}
+
+const updateTokenVariable = (data, uuid, variableName) => {
+	let object = data.resources.find(resource => resource?.data?.[variableName]);
+	object.data[variableName] = authTemplate(uuid);
 }
 
 const args = process.argv.slice(2);
